@@ -150,3 +150,4 @@ resource "google_compute_instance" "compute-windows" {
     access_config {}  # Will assign an external IP for RDP access
   }
   allow_stopping_for_update = true
+}
