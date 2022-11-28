@@ -1,0 +1,1 @@
+Terraform config to deploy two compute instances and corresponding infrastructure for the Chronicle Forwarder lab.
