@@ -11,6 +11,12 @@ provider "google" {
   project = "${var.project_id}"
 }
 
+#Enable the Compute API
+resource "google_project_service" "compute-api" {
+  project = "${var.project_id}"
+  service = "compute.googleapis.com"
+}
+
 # Create a network
 resource "google_compute_network" "default-network" {
   name                    = "default-network"
