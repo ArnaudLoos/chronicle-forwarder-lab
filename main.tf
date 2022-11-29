@@ -11,11 +11,12 @@ provider "google" {
   project = "${var.project_id}"
 }
 
-#Enable the Compute API
-resource "google_project_service" "compute-api" {
-  project = "${var.project_id}"
-  service = "compute.googleapis.com"
-}
+#Enable the Compute API (or do it manually beforehand)
+#There is a delay between the time you enable the API and being able to deploy resources
+#resource "google_project_service" "compute-api" {
+#  project = "${var.project_id}"
+#  service = "compute.googleapis.com"
+#}
 
 # Create a network
 resource "google_compute_network" "default-network" {
@@ -153,7 +154,7 @@ resource "google_compute_instance" "compute-windows" {
   }
   network_interface {
     subnetwork = google_compute_subnetwork.default-subnet.id
-    access_config {}  # Will assign an external IP for RDP access
+    access_config {}  # Will assign an external IP for RDP access. If you get an error about this it probably means an Org Policy is preventing it.
   }
   allow_stopping_for_update = true
 }
